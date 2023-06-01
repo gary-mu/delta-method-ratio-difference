@@ -6,6 +6,14 @@ delta_method_ratio_variance <- function(test_mean, control_mean, test_se, contro
   return(ratio_variance)
 }
 
+#Another deriviation of ratio delta variance calculation
+#delta_method_ratio_variance2 <- function(mean_test, mean_control, se_test, se_control){
+#  var_calc <- (se_test^2 * mean_control^2 + se_control^2 * mean_test^2)/mean_control^4
+#  return(var_calc)
+#}
+
+
+
 pct_relative_delta_difference <- function(test_mean, control_mean, test_se, control_se, test_sample_size, control_sample_size, confidence_level){
   pct_delta <- test_mean/control_mean -1
   pct_delta_var <- delta_method_ratio_variance(test_mean, control_mean, test_se, control_se)
