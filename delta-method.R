@@ -1,12 +1,10 @@
 #When you have test and control group aggregate stats and want to calculate
 #their ratio difference (relative % difference) and construct a confidence interval
 
-pct_delta_var <- delta_method_ratio_variance(
-  exp_agg_data$cancellation_rate_mean[exp_agg_data$group == 'test'],
-  exp_agg_data$cancellation_rate_mean[exp_agg_data$group == 'control'],
-  exp_agg_data$cancellation_rate_se[exp_agg_data$group == 'test'],
-  exp_agg_data$cancellation_rate_se[exp_agg_data$group == 'control']
-  )
+delta_method_ratio_variance <- function(test_mean, control_mean, test_se, control_se){
+  ratio_variance <- (test_se ^ 2 +  (test_mean/control_mean)^2 * control_se^2)/ control_mean^2
+  return(ratio_variance)
+}
 
 pct_relative_delta_difference <- function(test_mean, control_mean, test_se, control_se, test_sample_size, control_sample_size, confidence_level){
   pct_delta <- test_mean/control_mean -1
