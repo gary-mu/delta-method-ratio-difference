@@ -1,15 +1,15 @@
 #When you have test and control group aggregate stats and want to calculate
 #their ratio difference (relative % difference) and construct a confidence interval
-
-delta_method_ratio_variance <- function(test_mean, control_mean, test_se, control_se){
-  ratio_variance <- (test_se ^ 2 +  (test_mean/control_mean)^2 * control_se^2)/ control_mean^2
-  return(ratio_variance)
+#https://www.stat.rice.edu/~dobelman/notes_papers/math/TaylorAppDeltaMethod.pdf
+delta_method_ratio_variance2 <- function(mean_test, mean_control, se_test, se_control){
+  var_calc <- (se_test^2 * mean_control^2 + se_control^2 * mean_test^2)/mean_control^4
+  return(var_calc)
 }
 
 #Another deriviation of ratio delta variance calculation
-#delta_method_ratio_variance2 <- function(mean_test, mean_control, se_test, se_control){
-#  var_calc <- (se_test^2 * mean_control^2 + se_control^2 * mean_test^2)/mean_control^4
-#  return(var_calc)
+#delta_method_ratio_variance <- function(test_mean, control_mean, test_se, control_se){
+#  ratio_variance <- (test_se ^ 2 +  (test_mean/control_mean)^2 * control_se^2)/ control_mean^2
+#  return(ratio_variance)
 #}
 
 
